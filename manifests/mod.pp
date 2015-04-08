@@ -1,6 +1,7 @@
 define apache::mod (
   $package        = undef,
   $package_ensure = 'present',
+  $install_options = '',
   $lib            = undef,
   $lib_path       = $::apache::params::lib_path,
   $id             = undef,
@@ -70,9 +71,10 @@ define apache::mod (
     Package[$_package] -> File<| title == "${mod}.conf" |>
     # $_package may be an array
     package { $_package:
-      ensure  => $package_ensure,
-      require => Package['httpd'],
-      before  => $package_before,
+      ensure          => $package_ensure,
+      install_options => $install_options,
+      require         => Package['httpd'],
+      before          => $package_before,
     }
   }
 
