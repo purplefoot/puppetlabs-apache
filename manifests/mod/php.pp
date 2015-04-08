@@ -1,6 +1,7 @@
 class apache::mod::php (
   $package_name   = undef,
   $package_ensure = 'present',
+  $install_options = undef,
   $path           = undef,
   $extensions     = ['.php'],
   $content        = undef,
@@ -35,9 +36,10 @@ class apache::mod::php (
   }
 
   ::apache::mod { 'php5':
-    package        => $package_name,
-    package_ensure => $package_ensure,
-    path           => $path,
+    package         => $package_name,
+    package_ensure  => $package_ensure,
+    install_options => $install_options,
+    path            => $path,
   }
 
   include ::apache::mod::mime
