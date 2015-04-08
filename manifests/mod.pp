@@ -1,7 +1,7 @@
 define apache::mod (
   $package        = undef,
   $package_ensure = 'present',
-  $install_options = '',
+  $install_options = undef,
   $lib            = undef,
   $lib_path       = $::apache::params::lib_path,
   $id             = undef,
